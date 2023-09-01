@@ -1,0 +1,81 @@
+----DBMS ASSIGNMENT INSTRUCTIONS----
+
+----CREATE DATABASE----
+
+CREATE DATABASE company_db
+
+
+----CREATE CUSTOMERS TABLE----
+
+CREATE TABLE customer(
+    	customer_id int not null AUTO_INCREMENT,
+	first_name varchar (20),
+	last_name varchar (20),
+	email varchar (20),
+	phone varchar (20),
+	address varchar (100),
+	PRIMARY KEY (customer_id)
+	);
+
+----CREATE ORDERS TABLE----
+
+CREATE TABLE orders(
+    order_id int not null AUTO_INCREMENT,
+    customer_id int (50),
+    order_date date,
+    total_amount float,
+PRIMARY KEY (order_id),
+FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+);
+----INSERT DATA IN CUSTOMER TABLE----
+
+INSERT INTO `customer` (`customer_id`, `first_name`, `last_name`, `email`, `phone`, `address`) VALUES
+(1, 'dev', 'tiwari', 'devtiwari@gmail.com', 215445654, 'patan'),
+(2, 'sachin', 'marathi', 'sachinsher@gmail.com', 21548958, 'right town'),
+(3, 'rohit', 'patel', 'rohitp@gmail.com', 22722954, 'barela'),
+(4, 'prateek', 'dubey', 'prateekp@gmail.com', 548484955, 'vijay nagar'),
+(5, 'arvind', 'sahu', 'sahuarvind@gmail.com', 998877445, 'sadar');
+
+----INSERT DATA IN ORDERS TABLE----
+
+INSERT INTO `orders` (`order_id`, `customer_id`, `order_date`, `total_amount`) VALUES
+(38, 3, '2023-10-12', 600),
+(39, 4, '2023-09-03', 800),
+(40, 4, '2023-08-01', 500),
+(41, 3, '2023-05-15', 200),
+(43, 5, '2023-07-09', 400),
+(44, 3, '2023-10-12', 600),
+(45, 4, '2023-09-03', 800),
+(46, 4, '2023-08-01', 500),
+(47, 3, '2023-05-15', 200),
+(53, 5, '2023-07-09', 950);
+
+----DELETE ROW FROM CUSTOMER TABLE----
+DELETE FROM `customer` WHERE order_date = 22-12-2023;
+
+----INNER JOIN----
+
+SELECT * FROM customer inner join orders on 
+customer.Customer_id = orders.customer_id;
+
+----LEFT JOIN----
+
+SELECT * FROM customer left join orders on 
+customer.Customer_id = orders.customer_id;
+
+----RIGHT JOIN----
+
+SELECT * FROM customer right join orders on 
+customer.Customer_id = orders.customer_id;
+
+----COCATINATION----
+SELECT*, CONCAT(first_name,' ',last_name)
+AS full_name from customer;
+
+----COCATINATION IN INNER JOIN----
+
+SELECT *,CONCAT(customer.first_name,'',customer.last_name)
+AS FULL_NAME FROM customer INNER JOIN orders ON 
+customer.customer_id=orders.customer_id;
+    
+
